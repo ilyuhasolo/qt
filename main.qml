@@ -8,11 +8,13 @@ Window {
     height: 500
     title: qsTr("Authorization")
     flags: "Dialog"
+    property int check : 0
 
     Loader{
         id: sign
         anchors.fill: parent
-        source: "login.qml"
+        source: (check == 0) ? "login.qml"
+                             : "signup.qml"
     }
 
 
@@ -26,8 +28,9 @@ Window {
         ClickableText {
             id: signIn
             text: "Sign In"
+            font.underline : check == 0
             onClicked: {
-                sign.source = "login.qml"
+                check = 0
             }
         }
 
@@ -39,8 +42,9 @@ Window {
         ClickableText {
             id: signUp
             text: "Sign Up"
+            font.underline: check == 1
             onClicked: {
-                sign.source = "signup.qml"
+                check = 1
             }
         }
     }
