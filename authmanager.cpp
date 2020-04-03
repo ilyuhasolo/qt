@@ -27,15 +27,13 @@ void AuthManager::authentificate(const QString &login, const QString &password)
     connect(reply, &QNetworkReply::finished,
             [this, reply](){
         if (reply->error() != QNetworkReply::NoError) {
-            this->authentificateError = reply->errorString();
+            emit authentificateRequestCompleted(reply->errorString(), "");
         } else {
             QJsonObject obj = QJsonDocument::fromJson(reply->readAll()).object();
             QString token = obj.value("token").toString();
-            this->token = token;
+            emit authentificateRequestCompleted(reply->errorString(), token);
         }
-        this->onAuthentificateFinished();
         reply->deleteLater();
-
     });
 }
 
@@ -54,29 +52,7 @@ void AuthManager::registering(const QString &login, const QString &password)
 
     connect(reply, &QNetworkReply::finished,
             [this, reply](){
-        if (reply->error() != QNetworkReply::NoError) {
-            this->registerError = reply->errorString();
-        }
-        this->onRegisterFinished();
+        emit registerRequestCompleted(reply->errorString());
         reply->deleteLater();
-
     });
-}
-
-void AuthManager::onRegisterFinished()
-{
-    qDebug() << "Register error: " << this -> registerError;
-    emit registerRequestCompleted(this -> registerError);
-}
-
-QString AuthManager::getToken()
-{
-    return this->token;
-}
-
-void AuthManager::onAuthentificateFinished()
-{
-    qDebug() << "Authentification error: " << this -> authentificateError;
-    qDebug() << "Token: " << this -> getToken();
-    emit authentificateRequestCompleted(this -> authentificateError);
 }
