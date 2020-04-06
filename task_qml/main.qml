@@ -7,17 +7,15 @@ Window {
     width: 280
     height: 500
     title: qsTr("Authorization")
-    flags: "Dialog"
-    property int check : 0
+    flags: Qt.Dialog
+    property int pagecheck : 0
 
     Loader{
         id: sign
         anchors.fill: parent
-        source: (check == 0) ? "login.qml"
+        source: (pagecheck == 0) ? "login.qml"
                              : "signup.qml"
     }
-
-
 
     Row {
         spacing: 10
@@ -28,7 +26,7 @@ Window {
         ClickableText {
             id: signIn
             text: "Sign In"
-            font.underline : check == 0
+            font.underline : pagecheck == 0
             onClicked: {
                 check = 0
             }
@@ -42,7 +40,7 @@ Window {
         ClickableText {
             id: signUp
             text: "Sign Up"
-            font.underline: check == 1
+            font.underline: pagecheck == 1
             onClicked: {
                 check = 1
             }
