@@ -34,7 +34,7 @@ Item {
         anchors.top: signUpLogin.bottom
         anchors.topMargin: 10
         placeholderText: "Password"
-        echoMode: "Password"
+        echoMode: TextInput.Password
     }
 
     TextField {
@@ -45,7 +45,7 @@ Item {
         anchors.top: signUpPassword.bottom
         anchors.topMargin: 10
         placeholderText: "Repeat password"
-        echoMode: "Password"
+        echoMode: TextInput.Password
     }
 
     TextField {
