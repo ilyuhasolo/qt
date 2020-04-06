@@ -7,7 +7,7 @@ Text {
     signal clicked()
     MouseArea {
         anchors.fill: parent
-        cursorShape: "PointingHandCursor"
+        cursorShape: Qt.PointingHandCursor
         onClicked: {
             clickableText.clicked()
         }
