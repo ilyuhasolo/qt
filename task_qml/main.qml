@@ -28,7 +28,7 @@ Window {
             text: "Sign In"
             font.underline : pagecheck == 0
             onClicked: {
-                check = 0
+                pagecheck = 0
             }
         }
 
@@ -42,7 +42,7 @@ Window {
             text: "Sign Up"
             font.underline: pagecheck == 1
             onClicked: {
-                check = 1
+                pagecheck = 1
             }
         }
     }
