@@ -34,7 +34,7 @@ Item {
         anchors.top: signInLogin.bottom
         anchors.topMargin: 20
         placeholderText: "Password"
-        echoMode: "Password"
+        echoMode: TextInput.Password
     }
 
     Button {
